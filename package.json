@@ -1,7 +1,7 @@
 {
-  "name": "aframe-react-vr",
-  "version": "3.0.1",
-  "description": "Virtual-Reality experiences base on A-Frame and React.",
+  "name": "react-aframe-game",
+  "version": "0.0.1",
+  "description": "Simple AR game base on React && Aframe.js.",
   "author": "yanm1ng <eason.yanm1ng@gmail.com>",
   "scripts": {
     "start": "react-scripts start",
