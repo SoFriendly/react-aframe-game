@@ -10,7 +10,7 @@
     "eject": "react-scripts eject",
     "deploy": "npm run build && gh-pages -d build"
   },
-  "homepage": "http://yanm1ng.github.io/react-ar",
+  "homepage": "http://yanm1ng.github.io/react-aframe-game",
   "dependencies": {
     "aframe": "^0.7.0",
     "aframe-animation-component": "^3.2.5",
@@ -25,7 +25,7 @@
     "throttle-debounce": "^1.0.1"
   },
   "devDependencies": {
-    "gh-pages": "^0.12.0"
+    "gh-pages": "^1.1.0"
   },
   "keywords": [
     "aframe",
