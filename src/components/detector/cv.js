@@ -100,11 +100,9 @@ CV.otsu = function (imageSrc) {
   return threshold;
 };
 
-CV.stackBoxBlurMult =
-  [1, 171, 205, 293, 57, 373, 79, 137, 241, 27, 391, 357, 41, 19, 283, 265];
+CV.stackBoxBlurMult = [1, 171, 205, 293, 57, 373, 79, 137, 241, 27, 391, 357, 41, 19, 283, 265];
 
-CV.stackBoxBlurShift =
-  [0, 9, 10, 11, 9, 12, 10, 11, 12, 9, 13, 13, 10, 9, 13, 13];
+CV.stackBoxBlurShift = [0, 9, 10, 11, 9, 12, 10, 11, 12, 9, 13, 13, 10, 9, 13, 13];
 
 CV.BlurStack = function () {
   this.color = 0;

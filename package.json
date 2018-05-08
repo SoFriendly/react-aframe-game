@@ -19,7 +19,6 @@
     "aframe-react": "^4.0.x",
     "babel-polyfill": "^6.3.14",
     "prop-types": "15.6.0",
-    "query-string": "^6.1.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-scripts": "0.9.5",

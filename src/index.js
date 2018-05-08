@@ -1,5 +1,4 @@
 import 'babel-polyfill';
-import query from 'query-string';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -7,9 +6,11 @@ import VRScene from './components/vr-scene';
 import Camera from './components/camera';
 import Detector from './components/detector';
 
+import { parse } from './common/query';
+
 import './index.css';
 
-const params = query.parse(location.search);
+const params = parse(location.search);
 
 class App extends React.Component {
   constructor(props) {
