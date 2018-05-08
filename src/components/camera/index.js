@@ -141,6 +141,7 @@ class Camera extends PureComponent {
     const { mediaStream } = this.state;
     const { onSuccess } = this.props;
     if (this.video) {
+      this.video.src = mediaStream;
       this.video.srcObject = mediaStream;
       this.video.onloadedmetadata = () => this.video.play();
       onSuccess && onSuccess(this.video);

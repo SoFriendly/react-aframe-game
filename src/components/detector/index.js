@@ -4,6 +4,8 @@ import AR from './aruco';
 const wrapStyle = {
   position: 'absolute',
   width: '100%',
+  height: '100%',
+  top: 0,
   left: 0
 };
 
@@ -112,8 +114,7 @@ export default class Detector extends React.Component {
       <canvas
         style={wrapStyle}
         ref={canvas => (this.canvas = canvas)}
-      >
-      </canvas>
+      />
     );
   }
 }

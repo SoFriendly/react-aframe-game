@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 const captureButtonStyle = {
   background: 'white',
-  border: '6px solid white',
+  border: '3px solid white',
   borderRadius: '50%',
   boxShadow: '0 2px 7px rgba(0, 0, 0, 0.25), inset 0 0 0 2px rgba(0, 0, 0, 0.75)',
   cursor: 'pointer',
-  height: '60px',
-  width: '60px',
+  height: '40px',
+  width: '40px',
 };
 
 const CaptureButton = ({ onCapture }) => (
