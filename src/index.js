@@ -1,4 +1,5 @@
 import 'babel-polyfill';
+import query from 'query-string';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -7,6 +8,8 @@ import Camera from './components/camera';
 import Detector from './components/detector';
 
 import './index.css';
+
+const params = query.parse(location.search);
 
 class App extends React.Component {
   constructor(props) {
@@ -28,8 +31,10 @@ class App extends React.Component {
     return (
       <div>
         <Camera onSuccess={this.onCameraSuccess} />
-        <VRScene />
         <Detector camera={camera} />
+        { params.vr === 'true' &&
+          <VRScene />
+        }
       </div>
     );
   }

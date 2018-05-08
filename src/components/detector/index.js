@@ -3,6 +3,7 @@ import AR from './aruco';
 
 const wrapStyle = {
   position: 'absolute',
+  width: '100%',
   left: 0
 };
 
