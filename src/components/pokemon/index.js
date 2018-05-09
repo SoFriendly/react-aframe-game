@@ -7,6 +7,8 @@ import 'aframe-look-at-component';
 
 import React from 'react';
 
+import battle from './audio/pokemon-battle.mp3';
+
 import charizard from './images/charizard.png';
 import lightning from './images/lightning.jpg';
 
@@ -19,6 +21,10 @@ export default class Pokemon extends React.Component {
     super(props);
   }
 
+  componentDidMount() {
+    this.refs.battle.volume = 0.6;
+  }
+
   render () {
     return (
       <a-scene>
@@ -27,8 +33,10 @@ export default class Pokemon extends React.Component {
           <a-asset-item id="seating-ply" src={seating}></a-asset-item>
           <a-asset-item id="pikachu-ply" src={pikachu}></a-asset-item>
           <img id="charizard" src={charizard} />
-          <audio id="song" autoPlay loop src="./audio/pokemon-gym-battle.mp3"></audio>
+          <audio ref="battle" id="battle" autoPlay loop src={battle}></audio>
         </a-assets>
+
+        <a-sky color="#111"></a-sky>
 
         <a-entity ply-model="src: #stadium-ply"
                   position="0 -11 -27" scale=".8 .8 .8" rotation="-90 0 0"></a-entity>
@@ -39,7 +47,8 @@ export default class Pokemon extends React.Component {
         <a-entity ply-model="src: #seating-ply"
                   position="65 -8 -10" scale=".8 .8 .8" rotation="-90 0 0"></a-entity>
         <a-entity position="1.4 -0.6 -3">
-          <a-entity ply-model="src: #pikachu-ply" scale=".1 .1 .1" rotation="-90 -80 0"></a-entity>
+          <a-entity ply-model="src: #pikachu-ply"
+                    scale=".1 .1 .1" rotation="-90 -80 0"></a-entity>
           <a-sphere src={lightning} position="0 0 -0.5" rotation="-90 0 0"
                     color="#FFF" radius="1.8" opacity="0.3" shader="flat"
                     animation="property: opacity; loop: true; to: 0.4; dur: 1000"></a-sphere>
@@ -51,8 +60,7 @@ export default class Pokemon extends React.Component {
                 scale="20 20 1" look-at="[camera]"></a-image>
 
         <a-light type="ambient" color="#777"></a-light>
-        <a-entity animation="property: rotation; to: 0 360 0; easing: linear; loop: true;
-                            dur: 2000">
+        <a-entity animation="property: rotation; to: 0 360 0; easing: linear; loop: true; dur: 2000">
           <a-light type="point" color="#FFF" position="-10 10 -15" intensity="0.3"></a-light>
           <a-light type="point" color="#FFF" position="10 10 -15" intensity="0.3"></a-light>
         </a-entity>
@@ -61,7 +69,6 @@ export default class Pokemon extends React.Component {
           <a-cursor></a-cursor>
         </a-camera>
 
-        <a-sky color="#111"></a-sky>
       </a-scene>
     );
   }
