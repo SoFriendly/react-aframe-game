@@ -2,7 +2,9 @@ import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import VRScene from './components/vr-scene';
+import FullWrapper from './components/full-wrapper';
+// import VRScene from './components/vr-scene';
+import Pokemon from './components/pokemon';
 import Camera from './components/camera';
 import Detector from './components/detector';
 
@@ -29,15 +31,18 @@ class App extends React.Component {
   render () {
     const { camera } = this.state;
 
-    return (
-      <div>
-        <Camera onSuccess={this.onCameraSuccess} />
-        <Detector camera={camera} />
-        { params.vr === 'true' &&
-          <VRScene />
-        }
-      </div>
-    );
+    if (params.vr === 'true') {
+      return (
+        <Pokemon />
+      );
+    } else {
+      return (
+        <FullWrapper>
+          <Camera onSuccess={this.onCameraSuccess} />
+          <Detector camera={camera} />
+        </FullWrapper>
+      );
+    }
   }
 }
 

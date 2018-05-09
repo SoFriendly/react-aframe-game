@@ -16,8 +16,8 @@ class Camera extends PureComponent {
     super(props);
     const {
       facingMode,
-      height,
-      width
+      width,
+      height
     } = this.props;
     const constraints = buildConstraints(facingMode, width, height);
     const supportsIntersectionObserver = window.IntersectionObserver;
@@ -63,8 +63,12 @@ class Camera extends PureComponent {
     const { isIntersecting } = this.state;
     if (isIntersecting !== prevState.isIntersecting) {
       if (isIntersecting) {
-        const { facingMode, height, width } = this.state.constraints.video;
-        const constraints = buildConstraints(facingMode, height, width);
+        const {
+          facingMode,
+          width,
+          height
+        } = this.state.constraints.video;
+        const constraints = buildConstraints(facingMode, width, height);
         await this.getMediaStream(constraints);
         return this.setVideoStream();
       } else {
@@ -96,8 +100,8 @@ class Camera extends PureComponent {
       return this.setState({ error: errorTypes.INVALID_FACING_MODE.type });
     }
     this.stopMediaStream();
-    const { height, width } = this.state.constraints.video;
-    const constraints = buildConstraints(facingMode, height, width);
+    const { width, height } = this.state.constraints.video;
+    const constraints = buildConstraints(facingMode, width, height);
     await this.getMediaStream(constraints);
     this.setVideoStream();
   }
@@ -121,8 +125,8 @@ class Camera extends PureComponent {
   };
 
   handleResize = debounce(150, async () => {
-    const { facingMode, height, width } = this.state.constraints.video;
-    await this.getMediaStream(buildConstraints(facingMode, height, width));
+    const { facingMode, width, height } = this.state.constraints.video;
+    await this.getMediaStream(buildConstraints(facingMode, width, height));
     this.setVideoStream();
   });
 
@@ -159,7 +163,7 @@ class Camera extends PureComponent {
   }
 
   render() {
-    const { captureButtonRenderer, responsive } = this.props;
+    const { captureButtonRenderer } = this.props;
     const { constraints = {}, devices, error } = this.state;
     const multipleDevices = devices && devices.length > 1;
     const { video: { facingMode } } = constraints;
@@ -173,12 +177,6 @@ class Camera extends PureComponent {
             autoPlay
             playsInline
             ref={video => (this.video = video)}
-            style={
-              responsive ?
-              { background: 'black', display: 'block', width: '100%' }
-              :
-              { background: 'black', display: 'block' }
-            }
           />
           <CameraControls>
             {captureButtonRenderer ? (
