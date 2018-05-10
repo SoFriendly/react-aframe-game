@@ -23,13 +23,13 @@
     "prop-types": "15.6.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
-    "react-scripts": "0.9.5",
+    "react-scripts": "^1.1.4",
     "throttle-debounce": "^1.0.1"
   },
   "devDependencies": {
     "audiosprite-loader": "^0.1.5",
     "gh-pages": "^1.1.0",
-    "howler": "^2.0.10"
+    "uglifyjs-webpack-plugin": "^1.2.5"
   },
   "keywords": [
     "aframe",

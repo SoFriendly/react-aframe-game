@@ -12,7 +12,7 @@ import { parse } from './common/query';
 
 import './index.css';
 
-const params = parse(location.search);
+const params = parse(window.location.search);
 
 class App extends React.Component {
   constructor(props) {
