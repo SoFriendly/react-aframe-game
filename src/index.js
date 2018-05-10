@@ -3,8 +3,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import FullWrapper from './components/full-wrapper';
-// import VRScene from './components/vr-scene';
-import Pokemon from './components/pokemon';
+import Pokeball from './components/pokeball';
+// import Pokemon from './components/pokemon';
 import Camera from './components/camera';
 import Detector from './components/detector';
 
@@ -33,7 +33,7 @@ class App extends React.Component {
 
     if (params.vr === 'true') {
       return (
-        <Pokemon />
+        <Pokeball />
       );
     } else {
       return (

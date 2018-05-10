@@ -33,7 +33,7 @@ export default class Pokemon extends React.Component {
           <a-asset-item id="seating-ply" src={seating}></a-asset-item>
           <a-asset-item id="pikachu-ply" src={pikachu}></a-asset-item>
           <img id="charizard" src={charizard} />
-          <audio ref="battle" id="battle" autoPlay loop src={battle}></audio>
+          <audio ref="battle" autoPlay loop src={battle}></audio>
         </a-assets>
 
         <a-sky color="#111"></a-sky>

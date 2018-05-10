@@ -176,7 +176,8 @@ AR.Detector.prototype.getMarker = function (imageSrc, candidate) {
 
   return new AR.Marker(
     this.mat2id(rotations[pair.second]),
-    this.rotate2(candidate, 4 - pair.second));
+    this.rotate2(candidate, 4 - pair.second)
+  );
 };
 
 AR.Detector.prototype.hammingDistance = function (bits) {

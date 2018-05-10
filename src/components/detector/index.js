@@ -1,6 +1,7 @@
+import './polyfill';
+
 import React from 'react';
 import AR from './aruco';
-
 
 export default class Detector extends React.Component {
   constructor(props) {
