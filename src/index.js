@@ -33,7 +33,10 @@ class App extends React.Component {
 
     if (params.vr === 'true') {
       return (
-        <Pokeball />
+        <FullWrapper>
+          <Camera />
+          <Pokeball />
+        </FullWrapper>
       );
     } else {
       return (

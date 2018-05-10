@@ -17,9 +17,6 @@ import seating from './models/seating.ply';
 import pikachu from './models/pikachu.ply';
 
 export default class Pokemon extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     this.refs.battle.volume = 0.6;
@@ -32,7 +29,8 @@ export default class Pokemon extends React.Component {
           <a-asset-item id="stadium-ply" src={stadium}></a-asset-item>
           <a-asset-item id="seating-ply" src={seating}></a-asset-item>
           <a-asset-item id="pikachu-ply" src={pikachu}></a-asset-item>
-          <img id="charizard" src={charizard} />
+          <img id="charizard" src={charizard} alt="" />
+          <img id="lightning" src={lightning} alt="" />
           <audio ref="battle" autoPlay loop src={battle}></audio>
         </a-assets>
 
@@ -40,16 +38,18 @@ export default class Pokemon extends React.Component {
 
         <a-entity ply-model="src: #stadium-ply"
                   position="0 -11 -27" scale=".8 .8 .8" rotation="-90 0 0"></a-entity>
+
         <a-entity ply-model="src: #seating-ply"
                   position="0 -8 -110" scale=".8 .8 .8" rotation="-90 90 0"></a-entity>
         <a-entity ply-model="src: #seating-ply"
                   position="-65 -8 -10" scale=".8 .8 .8" rotation="-90 180 0"></a-entity>
         <a-entity ply-model="src: #seating-ply"
                   position="65 -8 -10" scale=".8 .8 .8" rotation="-90 0 0"></a-entity>
+        
         <a-entity position="1.4 -0.6 -3">
           <a-entity ply-model="src: #pikachu-ply"
                     scale=".1 .1 .1" rotation="-90 -80 0"></a-entity>
-          <a-sphere src={lightning} position="0 0 -0.5" rotation="-90 0 0"
+          <a-sphere src="#lightning" position="0 0 -0.5" rotation="-90 0 0"
                     color="#FFF" radius="1.8" opacity="0.3" shader="flat"
                     animation="property: opacity; loop: true; to: 0.4; dur: 1000"></a-sphere>
         </a-entity>
