@@ -18,9 +18,10 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      status: 'init',
       camera: null
     };
-  } 
+  }
 
   onCameraSuccess = (camera) => {
     this.setState({
