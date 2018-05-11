@@ -1,7 +1,7 @@
-import './polyfill';
+import './libs/polyfill';
 
 import React from 'react';
-import AR from './aruco';
+import AR from './libs/aruco';
 
 export default class Detector extends React.Component {
   constructor(props) {
@@ -35,7 +35,7 @@ export default class Detector extends React.Component {
   
   snapshot() {
     const { camera } = this.props;
-    this.context.drawImage(camera, 0, 0, this.width, this.height);
+    this.context.drawImage(camera, 0, 0);
     this.imageData = this.context.getImageData(0, 0, this.width, this.height);
   }
   
@@ -82,7 +82,9 @@ export default class Detector extends React.Component {
   render() {
     return (
       <canvas
-        style={{ width: '100%', height: '100%', position: 'absolute', top: 0, objectFit: 'cover' }}
+        style={{ position: 'absolute', top: 0, objectFit: 'cover' }}
+        width={this.width}
+        height={this.height}
         ref={canvas => (this.canvas = canvas)}
       />
     );

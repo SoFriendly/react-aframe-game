@@ -24,9 +24,9 @@ class App extends React.Component {
   }
 
   onCameraSuccess = (camera) => {
-    this.setState({
-      camera
-    });
+    // this.setState({
+    //   camera
+    // });
   }
 
   render () {

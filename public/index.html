@@ -2,8 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>A-Frame React</title>
+    <script type="text/javascript">
+      (function (win, doc) { var cWid, fontTimer, timerCount = 0; function setFont() { if (fontTimer) { clearTimeout(fontTimer) } if (timerCount > 9) { return } cWid = doc.documentElement.getBoundingClientRect().width; if (/\d+/.test(cWid) && cWid > 300) { doc.documentElement.style.fontSize = cWid / 7.5 + "px"; if (fontTimer) { clearTimeout(fontTimer) } } else { fontTimer = setTimeout(function () { timerCount++; setFont() }, 200) } } setFont(); win.addEventListener("resize", setFont, false) }(window, document));
+    </script>
   </head>
   <body>
     <div id="app"></div>

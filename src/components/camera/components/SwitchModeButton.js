@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { facingModes } from './facingModeTypes';
+import { facingModes } from '../constants/facingModeTypes';
 
 const SwitchIcon = () => (
   <svg

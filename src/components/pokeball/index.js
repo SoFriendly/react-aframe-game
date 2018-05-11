@@ -2,26 +2,29 @@ import 'aframe';
 import 'aframe-extras';
 import 'aframe-html-shader';
 import 'aframe-animation-component';
-import 'aframe-particle-system-component';
 import 'aframe-look-at-component';
 
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import ball from './images/ball.png';
 
-export default class Pokeball extends React.Component {
+class Pokeball extends React.Component {
   componentDidMount() {
+    this.registerComponent();
+  }
+
+  registerComponent = () => {
+    const { onCatch } = this.props;
     // eslint-disable-next-line
-    AFRAME.registerComponent('hide-on-click', {
+    AFRAME.registerComponent('hide-on-focus', {
       dependencies: ['raycaster'],
       schema: {
         target: { type: 'selector' }
       },
       init: function () {
-        var el = this.el;
-        el.addEventListener('click', function () {
-          el.setAttribute('visible', false);
-          // data.target.setAttribute('visible', true);
+        this.el.addEventListener('click', function () {
+          onCatch && onCatch(this.el);
         });
       }
     });
@@ -34,8 +37,7 @@ export default class Pokeball extends React.Component {
           <img id="ball" src={ball} alt="" />
         </a-assets>
 
-        <a-image hide-on-click
-                 src="#ball" transparent="true" shader="standard" position="0 20 -40" scale="20 20 1"></a-image>
+        <a-image hide-on-focus src="#ball" transparent="true" shader="standard" position="0 20 -40" scale="20 20 1"></a-image>
 
         <a-camera>
           <a-cursor></a-cursor>
@@ -44,3 +46,9 @@ export default class Pokeball extends React.Component {
     );
   }
 }
+
+Pokeball.propTypes = {
+  onCatch: PropTypes.func
+};
+
+export default Pokeball;

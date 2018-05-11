@@ -1,5 +1,5 @@
 import React from 'react';
-import { errorTypes } from './errorTypes';
+import { errorTypes } from '../constants/errorTypes';
 
 const wrapperStyles = {
   padding: '30px 15px',

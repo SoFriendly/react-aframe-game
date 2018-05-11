@@ -1,25 +1,27 @@
+import './libs/polyfill';
+
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import debounce from 'throttle-debounce/debounce';
-import './polyfill';
-import CameraError from './CameraError';
-import CaptureButton from './CaptureButton';
-import CameraWrapper from './CameraWrapper';
-import CameraControls from './CameraControls';
-import SwitchModeButton from './SwitchModeButton';
-import { errorTypes } from './errorTypes';
-import { facingModes } from './facingModeTypes';
-import { buildConstraints, getAvailableDevices } from './cameraUtils';
+
+import CameraError from './components/CameraError';
+import ExploreButton from './components/ExploreButton';
+import CameraWrapper from './components/CameraWrapper';
+import CameraControl from './components/CameraControl';
+import SwitchModeButton from './components/SwitchModeButton';
+
+import { errorTypes } from './constants/errorTypes';
+import { facingModes } from './constants/facingModeTypes';
+
+import { buildConstraints, getAvailableDevices } from './libs/utils';
 
 class Camera extends PureComponent {
   constructor(props) {
     super(props);
     const {
-      facingMode,
-      width,
-      height
+      facingMode
     } = this.props;
-    const constraints = buildConstraints(facingMode, width, height);
+    const constraints = buildConstraints(facingMode);
     const supportsIntersectionObserver = window.IntersectionObserver;
 
     this.state = {
@@ -64,11 +66,9 @@ class Camera extends PureComponent {
     if (isIntersecting !== prevState.isIntersecting) {
       if (isIntersecting) {
         const {
-          facingMode,
-          width,
-          height
+          facingMode
         } = this.state.constraints.video;
-        const constraints = buildConstraints(facingMode, width, height);
+        const constraints = buildConstraints(facingMode);
         await this.getMediaStream(constraints);
         return this.setVideoStream();
       } else {
@@ -100,8 +100,7 @@ class Camera extends PureComponent {
       return this.setState({ error: errorTypes.INVALID_FACING_MODE.type });
     }
     this.stopMediaStream();
-    const { width, height } = this.state.constraints.video;
-    const constraints = buildConstraints(facingMode, width, height);
+    const constraints = buildConstraints(facingMode);
     await this.getMediaStream(constraints);
     this.setVideoStream();
   }
@@ -125,8 +124,8 @@ class Camera extends PureComponent {
   };
 
   handleResize = debounce(150, async () => {
-    const { facingMode, width, height } = this.state.constraints.video;
-    await this.getMediaStream(buildConstraints(facingMode, width, height));
+    const { facingMode } = this.state.constraints.video;
+    await this.getMediaStream(buildConstraints(facingMode));
     this.setVideoStream();
   });
 
@@ -163,7 +162,7 @@ class Camera extends PureComponent {
   }
 
   render() {
-    const { captureButtonRenderer } = this.props;
+    const { homeButtonRenderer } = this.props;
     const { constraints = {}, devices, error } = this.state;
     const multipleDevices = devices && devices.length > 1;
     const { video: { facingMode } } = constraints;
@@ -178,13 +177,13 @@ class Camera extends PureComponent {
             playsInline
             ref={video => (this.video = video)}
           />
-          <CameraControls>
-            {captureButtonRenderer ? (
-              captureButtonRenderer(this.captureMediaStream)
+          <CameraControl>
+            {homeButtonRenderer ? (
+              homeButtonRenderer(this.captureMediaStream)
             ) : (
-              <CaptureButton onCapture={this.captureMediaStream} />
+              <ExploreButton onClick={this.captureMediaStream} />
             )}
-          </CameraControls>
+          </CameraControl>
           {multipleDevices && (
             <SwitchModeButton
               currentFacingMode={facingMode}
@@ -198,18 +197,14 @@ class Camera extends PureComponent {
 }
 
 Camera.defaultProps = {
-  facingMode: facingModes.ENVIRONMENT,
-  responsive: true
+  facingMode: facingModes.ENVIRONMENT
 };
 
 Camera.propTypes = {
-  captureButtonRenderer: PropTypes.func,
+  homeButtonRenderer: PropTypes.func,
   facingMode: PropTypes.string,
-  height: PropTypes.number,
   onStopMediaStream: PropTypes.func,
   onTakePhoto: PropTypes.func,
-  responsive: PropTypes.bool,
-  width: PropTypes.number,
   onSuccess: PropTypes.func
 };
 

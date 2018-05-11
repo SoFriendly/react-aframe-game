@@ -22,16 +22,10 @@ export const getAvailableDevices = async (type = '') => {
   return null;
 };
 
-export const buildConstraints = (facingMode, width, height) => {
+export const buildConstraints = (facingMode) => {
   const constraints = { video: {} };
   if (facingMode) {
     constraints.video.facingMode = facingMode.toLowerCase();
-  }
-  if (width) {
-    constraints.video.width = { ideal: width };
-  }
-  if (height) {
-    constraints.video.height = { ideal: height };
   }
   return constraints;
 };
