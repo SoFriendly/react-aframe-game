@@ -8,7 +8,7 @@ const style = {
 }
 
 const CameraWrapper = ({ children }) => (
-  <div className="camera-wrap" style={style}>{children}</div>
+  <div className="camera-wrapper" style={style}>{children}</div>
 );
 
 export default CameraWrapper;

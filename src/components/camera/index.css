@@ -1,4 +1,4 @@
-.camera-wrap {
+.camera-wrapper {
   position: relative;
   overflow: hidden;
 }
@@ -21,49 +21,4 @@
   background: url('./images/pokeball.png') no-repeat;
   background-size: cover;
   box-shadow: 0 2px 7px rgba(0, 0, 0, 0.25);
-}
-
-.camera-sight {
-  position: absolute;
-  width: .8rem;
-  height: .8rem;
-  border: 3px solid aqua;
-  border-radius: 3px;
-  transition: all .5s ease;
-}
-
-.camera-sight-item.sight-item-lt {
-  right: 50%;
-  bottom: 50%;
-  margin-right: .4rem;
-  margin-bottom: .4rem;
-  border-right: none;
-  border-bottom: none;
-}
-
-.camera-sight-item.sight-item-rt {
-  left: 50%;
-  bottom: 50%;
-  margin-left: .4rem;
-  margin-bottom: .4rem;
-  border-left: none;
-  border-bottom: none;
-}
-
-.camera-sight-item.sight-item-lb {
-  right: 50%;
-  top: 50%;
-  margin-right: .4rem;
-  margin-top: .4rem;
-  border-right: none;
-  border-top: none;
-}
-
-.camera-sight-item.sight-item-rb {
-  left: 50%;
-  top: 50%;
-  margin-left: .4rem;
-  margin-top: .4rem;
-  border-left: none;
-  border-top: none;
 }

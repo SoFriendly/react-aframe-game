@@ -3,18 +3,20 @@ import './libs/polyfill';
 import React from 'react';
 import AR from './libs/aruco';
 
+import './index.css';
+
 export default class Detector extends React.Component {
   constructor(props) {
     super(props);
     this.detector = new AR.Detector();
     this.context = null;
     this.imageData = null;
+    this.width = window.innerWidth;
+    this.height = window.innerHeight;
   }
 
   componentDidMount() {
     this.context = this.canvas.getContext('2d');
-    this.width = window.innerWidth;
-    this.height = window.innerHeight;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -81,12 +83,23 @@ export default class Detector extends React.Component {
 
   render() {
     return (
-      <canvas
-        style={{ position: 'absolute', top: 0, objectFit: 'cover' }}
-        width={this.width}
-        height={this.height}
-        ref={canvas => (this.canvas = canvas)}
-      />
+      <div className="detector-wrapper">
+        <canvas
+          width={this.width}
+          height={this.height}
+          ref={canvas => (this.canvas = canvas)}
+        ></canvas>
+        <div className="detector-sight">
+          <div className="detector-sight-notice">请对准目标扫描3秒</div>
+          <div className="detector-sight-body">
+            <div className="detector-sight-item sight-item-lt"></div>
+            <div className="detector-sight-item sight-item-rt"></div>
+            <div className="detector-sight-item sight-item-lb"></div>
+            <div className="detector-sight-item sight-item-rb"></div>
+            <div className="detector-sight-scan"></div>
+          </div>
+        </div>
+      </div>
     );
   }
 }
