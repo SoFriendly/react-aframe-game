@@ -30,8 +30,9 @@ export default class Detector extends React.Component {
     this.snapshot();
     const markers = this.detector.detect(this.imageData);
     if (markers.length > 0) {
-      this.draw2DImg(markers);
+      this.validatePosition(markers);
       this.drawCorners(markers);
+      this.draw2DImg(markers);
     }
   }
   
@@ -39,6 +40,11 @@ export default class Detector extends React.Component {
     const { camera } = this.props;
     this.context.drawImage(camera, 0, 0);
     this.imageData = this.context.getImageData(0, 0, this.width, this.height);
+  }
+
+  validatePosition(markers) {
+    console.log(markers[0].corners);
+    
   }
   
   drawCorners(markers) {

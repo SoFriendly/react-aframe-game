@@ -26,47 +26,47 @@
   background-image: linear-gradient(to right, #ff9000 0, #ff5000 100%);
 }
 
+.detector-sight-body {
+  position: absolute;
+  width: 5.6rem;
+  height: 5.6rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-2.8rem, -2.8rem);
+}
+
 .detector-sight-item {
   position: absolute;
   width: .6rem;
   height: .6rem;
   border: 3px solid #ff5000;
   border-radius: 3px;
-  transition: all .5s ease;
 }
 
 .detector-sight-item.sight-item-lt {
-  right: 50%;
-  bottom: 50%;
-  margin-right: 2.2rem;
-  margin-bottom: 2.2rem;
+  left: 0;
+  top: 0;
   border-right: none;
   border-bottom: none;
 }
 
 .detector-sight-item.sight-item-rt {
-  left: 50%;
-  bottom: 50%;
-  margin-left: 2.2rem;
-  margin-bottom: 2.2rem;
+  right: 0;
+  top: 0;
   border-left: none;
   border-bottom: none;
 }
 
 .detector-sight-item.sight-item-lb {
-  right: 50%;
-  top: 50%;
-  margin-right: 2.2rem;
-  margin-top: 2.2rem;
+  left: 0;
+  bottom: 0;
   border-right: none;
   border-top: none;
 }
 
 .detector-sight-item.sight-item-rb {
-  left: 50%;
-  top: 50%;
-  margin-left: 2.2rem;
-  margin-top: 2.2rem;
+  right: 0;
+  bottom: 0;
   border-left: none;
   border-top: none;
 }
