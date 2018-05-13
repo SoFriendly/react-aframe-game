@@ -2,6 +2,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  outline: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-family: "PingFang SC", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 html, body {
