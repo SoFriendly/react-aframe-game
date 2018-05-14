@@ -7,7 +7,7 @@ import 'aframe-look-at-component';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ball from './images/ball.png';
+import pokeball from './images/pokeball.png';
 
 class Pokeball extends React.Component {
   componentDidMount() {
@@ -22,9 +22,12 @@ class Pokeball extends React.Component {
       schema: {
         target: { type: 'selector' }
       },
-      init: function () {
-        this.el.addEventListener('click', function () {
-          onCatch && onCatch(this.el);
+      init() {
+        this.el.addEventListener('click', () => {
+          this.el.setAttribute('animation', 'property: rotation; duration: 1500; easing: easeInSine; loop: false; to: 0 260 0');
+          setTimeout(() => {
+            onCatch && onCatch(this.el);
+          }, 1500);
         });
       }
     });
@@ -34,10 +37,10 @@ class Pokeball extends React.Component {
     return (
       <a-scene>
         <a-assets>
-          <img id="ball" src={ball} alt="" />
+          <img id="pokeball" src={pokeball} alt="" />
         </a-assets>
 
-        <a-image hide-on-focus src="#ball" transparent="true" shader="standard" position="0 20 -40" scale="20 20 1"></a-image>
+        <a-sphere hide-on-focus position="0 3 -5" radius="0.6" src="#pokeball" rotation="20 -80 5"></a-sphere>
 
         <a-camera>
           <a-cursor></a-cursor>
