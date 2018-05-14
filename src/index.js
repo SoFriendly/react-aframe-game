@@ -23,14 +23,32 @@ class App extends React.Component {
     };
   }
 
+  setStatus = (status) => {
+    this.setState({
+      status
+    });
+  }
+
   onCameraSuccess = (camera) => {
     this.setState({
       camera
     });
   }
 
+  onDetect = () => {
+    this.setState({
+      status: 'battle'
+    });
+  }
+
+  onCameraControl = () => {
+    this.setState({
+      status: 'detect'
+    })
+  }
+
   render () {
-    const { camera } = this.state;
+    const { status, camera } = this.state;
 
     if (params.vr === 'true') {
       return (
@@ -42,8 +60,10 @@ class App extends React.Component {
     } else {
       return (
         <FullWrapper>
-          <Camera onSuccess={this.onCameraSuccess} />
-          <Detector camera={camera} />
+          <Camera onSuccess={this.onCameraSuccess} onControl={this.onCameraControl} />
+          { status === 'detect' &&
+            <Detector camera={camera} onDetect={this.onDetect} />
+          }
         </FullWrapper>
       );
     }

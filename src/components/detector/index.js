@@ -9,6 +9,7 @@ export default class Detector extends React.Component {
   constructor(props) {
     super(props);
     this.detector = new AR.Detector();
+    this.frame = null;
     this.context = null;
     this.imageData = null;
     this.width = window.innerWidth;
@@ -17,6 +18,7 @@ export default class Detector extends React.Component {
 
   componentDidMount() {
     this.context = this.canvas.getContext('2d');
+    requestAnimationFrame(() => this.tick());
   }
 
   componentWillReceiveProps(nextProps) {
@@ -25,14 +27,21 @@ export default class Detector extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    window.cancelAnimationFrame(this.frame);
+  }
+
   tick() {
-    requestAnimationFrame(() => this.tick());
+    const { onDetect } = this.props;
+    this.frame = requestAnimationFrame(() => this.tick());
     this.snapshot();
     const markers = this.detector.detect(this.imageData);
     if (markers.length > 0) {
       this.validatePosition(markers, () => {
         this.drawCorners(markers);
-        this.draw2DImg(markers);
+        setTimeout(() => {
+          onDetect && onDetect();
+        }, 2000)
       });
     }
   }
@@ -83,7 +92,7 @@ export default class Detector extends React.Component {
     for (let i = 0; i < markers.length; i++) {
       const corners = markers[i].corners;
   
-      this.context.strokeStyle = 'red';
+      this.context.strokeStyle = '#ff5000';
       this.context.beginPath();
   
       for (let j = 0; j < corners.length; j++) {
@@ -95,9 +104,6 @@ export default class Detector extends React.Component {
   
       this.context.stroke();
       this.context.closePath();
-  
-      this.context.strokeStyle = 'green';
-      this.context.strokeRect(corners[0].x - 2, corners[0].y - 2, 4, 4);
     }
   }
   

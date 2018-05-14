@@ -83,18 +83,6 @@ class Camera extends PureComponent {
     window.removeEventListener('resize', this.handleResize);
   }
 
-  captureMediaStream = (event, mediaStream) => {
-    const ms = mediaStream || this.state.mediaStream;
-    if (!ms) {
-      this.setState({ error: errorTypes.NO_STREAM.type });
-    }
-    const mediaStreamTrack = ms.getVideoTracks()[0];
-    const imageCapture = new window.ImageCapture(mediaStreamTrack);
-    if (imageCapture) {
-      this.takePhoto(imageCapture);
-    }
-  };
-
   async changeFacingMode(facingMode = '') {
     if (!facingModes[facingMode]) {
       return this.setState({ error: errorTypes.INVALID_FACING_MODE.type });
@@ -129,17 +117,6 @@ class Camera extends PureComponent {
     this.setVideoStream();
   });
 
-  async takePhoto(imageCapture) {
-    try {
-      const { onTakePhoto } = this.props;
-      const blob = await imageCapture.takePhoto();
-      const capturedImg = URL.createObjectURL(blob);
-      if (onTakePhoto) onTakePhoto(capturedImg);
-    } catch (e) {
-      this.setState({ error: errorTypes.TAKE_PHOTO_FAILURE.type });
-    }
-  }
-
   setVideoStream() {
     const { mediaStream } = this.state;
     const { onSuccess } = this.props;
@@ -162,7 +139,7 @@ class Camera extends PureComponent {
   }
 
   render() {
-    const { homeButtonRenderer } = this.props;
+    const { homeButtonRenderer, onControl } = this.props;
     const { constraints = {}, devices, error } = this.state;
     const multipleDevices = devices && devices.length > 1;
     const { video: { facingMode } } = constraints;
@@ -181,7 +158,7 @@ class Camera extends PureComponent {
             {homeButtonRenderer ? (
               homeButtonRenderer(this.captureMediaStream)
             ) : (
-              <ExploreButton onClick={this.captureMediaStream} />
+              <ExploreButton onClick={onControl} />
             )}
           </CameraControl>
           {multipleDevices && (
@@ -204,7 +181,7 @@ Camera.propTypes = {
   homeButtonRenderer: PropTypes.func,
   facingMode: PropTypes.string,
   onStopMediaStream: PropTypes.func,
-  onTakePhoto: PropTypes.func,
+  onControl: PropTypes.func,
   onSuccess: PropTypes.func
 };
 
