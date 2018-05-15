@@ -171,7 +171,7 @@ class Camera extends PureComponent {
       );
     }
   }
-}
+};
 
 Camera.defaultProps = {
   facingMode: facingModes.ENVIRONMENT

@@ -4,29 +4,19 @@ import ReactDOM from 'react-dom';
 
 import FullWrapper from './components/full-wrapper';
 import Pokeball from './components/pokeball';
-// import Pokemon from './components/pokemon';
+import Pokemon from './components/pokemon';
 import Camera from './components/camera';
 import Detector from './components/detector';
 
-import { parse } from './common/query';
-
 import './index.css';
-
-const params = parse(window.location.search);
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: 'init',
+      status: 'init', // ['init', 'detect', 'catch', 'battle']
       camera: null
     };
-  }
-
-  setStatus = (status) => {
-    this.setState({
-      status
-    });
   }
 
   onCameraSuccess = (camera) => {
@@ -37,36 +27,33 @@ class App extends React.Component {
 
   onDetect = () => {
     this.setState({
-      status: 'battle'
+      status: 'catch'
     });
   }
 
   onCameraControl = () => {
     this.setState({
       status: 'detect'
-    })
+    });
   }
 
   render () {
     const { status, camera } = this.state;
 
-    if (params.vr === 'true') {
-      return (
-        <FullWrapper>
-          <Camera />
+    return (
+      <FullWrapper>
+        <Camera onSuccess={this.onCameraSuccess} onControl={this.onCameraControl} />
+        { status === 'detect' &&
+          <Detector camera={camera} onDetect={this.onDetect} />
+        }
+        { status === 'catch' &&
           <Pokeball />
-        </FullWrapper>
-      );
-    } else {
-      return (
-        <FullWrapper>
-          <Camera onSuccess={this.onCameraSuccess} onControl={this.onCameraControl} />
-          { status === 'detect' &&
-            <Detector camera={camera} onDetect={this.onDetect} />
-          }
-        </FullWrapper>
-      );
-    }
+        }
+        { status === 'battle' &&
+          <Pokemon />
+        }
+      </FullWrapper>
+    );
   }
 }
 

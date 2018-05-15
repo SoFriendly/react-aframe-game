@@ -1,11 +1,14 @@
 import './libs/polyfill';
 
 import React from 'react';
+import PropTypes from 'prop-types';
+
+import Loading from '../loading';
 import AR from './libs/aruco';
 
 import './index.css';
 
-export default class Detector extends React.Component {
+class Detector extends React.Component {
   constructor(props) {
     super(props);
     this.detector = new AR.Detector();
@@ -39,9 +42,9 @@ export default class Detector extends React.Component {
     if (markers.length > 0) {
       this.validatePosition(markers, () => {
         this.drawCorners(markers);
-        setTimeout(() => {
+        Loading.show('识别中', 3000, () => {
           onDetect && onDetect();
-        }, 2000)
+        });
       });
     }
   }
@@ -143,4 +146,11 @@ export default class Detector extends React.Component {
       </div>
     );
   }
-}
+};
+
+
+Detector.propTypes = {
+  onDetect: PropTypes.func
+};
+
+export default Detector;

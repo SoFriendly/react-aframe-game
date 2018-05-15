@@ -72,4 +72,4 @@ export default class Pokemon extends React.Component {
       </a-scene>
     );
   }
-}
+};

@@ -48,7 +48,7 @@ class Pokeball extends React.Component {
       </a-scene>
     );
   }
-}
+};
 
 Pokeball.propTypes = {
   onCatch: PropTypes.func
