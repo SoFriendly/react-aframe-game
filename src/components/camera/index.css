@@ -18,7 +18,8 @@
   height: 1.4rem;
   border: none;
   border-radius: 50%;
+  background-color: #ffffff;
   background: url('./images/pokeball.png') no-repeat;
   background-size: cover;
-  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
