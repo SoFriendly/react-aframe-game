@@ -1,8 +1,13 @@
 {
-  "main.css": "static/css/main.78fa2007.css",
-  "main.css.map": "static/css/main.78fa2007.css.map",
-  "main.js": "static/js/main.2e1e7f9b.js",
-  "main.js.map": "static/js/main.2e1e7f9b.js.map",
-  "static/media/ball.png": "static/media/ball.35eaa2e9.png",
-  "static/media/pokeball.png": "static/media/pokeball.a052e02e.png"
+  "main.css": "static/css/main.fccd5a97.css",
+  "main.css.map": "static/css/main.fccd5a97.css.map",
+  "main.js": "static/js/main.d4af82c9.js",
+  "main.js.map": "static/js/main.d4af82c9.js.map",
+  "static/media/charizard.png": "static/media/charizard.5ca7a442.png",
+  "static/media/lightning.jpg": "static/media/lightning.ea89e410.jpg",
+  "static/media/pikachu.ply": "static/media/pikachu.483cc99b.ply",
+  "static/media/pokeball.png": "static/media/pokeball.a052e02e.png",
+  "static/media/pokemon-battle.mp3": "static/media/pokemon-battle.196a47d1.mp3",
+  "static/media/seating.ply": "static/media/seating.1a14e05b.ply",
+  "static/media/stadium.ply": "static/media/stadium.a83da6c8.ply"
 }
