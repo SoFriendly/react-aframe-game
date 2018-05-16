@@ -14,5 +14,5 @@ export const errorTypes = {
   UNSUPPORTED: {
     details: 'Your browser does not support this feature',
     type: 'UNSUPPORTED',
-  },
+  }
 };

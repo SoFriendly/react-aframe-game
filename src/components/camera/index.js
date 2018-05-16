@@ -95,9 +95,7 @@ class Camera extends PureComponent {
 
   async getMediaStream(constraints = {}) {
     try {
-      const mediaStream = await navigator.mediaDevices.getUserMedia(
-        constraints,
-      );
+      const mediaStream = await navigator.mediaDevices.getUserMedia(constraints);
       this.setState({ mediaStream });
     } catch (error) {
       console.log(error);

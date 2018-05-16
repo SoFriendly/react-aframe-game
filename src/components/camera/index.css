@@ -13,7 +13,7 @@
   bottom: .6rem;
 }
 
-.explore-btn {
+.camera-explore-btn {
   width: 1.4rem;
   height: 1.4rem;
   border: none;
@@ -22,4 +22,15 @@
   background: url('./images/pokeball.png') no-repeat;
   background-size: cover;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.camera-switch-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: .5rem;
+  top: .5rem;
+  background: none;
+  border: none;
 }

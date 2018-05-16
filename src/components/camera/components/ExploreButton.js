@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import '../index.css';
 
 const ExploreButton = ({ onClick }) => (
-  <button className="explore-btn" onClick={onClick} />
+  <button className="camera-explore-btn" onClick={onClick} />
 );
 
 ExploreButton.propTypes = {
