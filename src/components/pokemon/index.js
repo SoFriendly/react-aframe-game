@@ -2,7 +2,6 @@ import 'aframe';
 import 'aframe-extras';
 import 'aframe-html-shader';
 import 'aframe-animation-component';
-import 'aframe-particle-system-component';
 import 'aframe-look-at-component';
 
 import React from 'react';
@@ -53,8 +52,6 @@ export default class Pokemon extends React.Component {
                     color="#FFF" radius="1.8" opacity="0.3" shader="flat"
                     animation="property: opacity; loop: true; to: 0.4; dur: 1000"></a-sphere>
         </a-entity>
-
-        <a-entity particle-system="preset: dust; particleCount: 1000" position="0 2.5 -15"></a-entity>
 
         <a-image src="#charizard" transparent="true" shader="standard" position="0 7 -40"
                 scale="20 20 1" look-at="[camera]"></a-image>
