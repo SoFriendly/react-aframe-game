@@ -17,14 +17,20 @@ class Pokeball extends React.Component {
   registerComponent = () => {
     const { onCatch } = this.props;
     // eslint-disable-next-line
-    AFRAME.registerComponent('hide-on-focus', {
+    AFRAME.registerComponent('on-focus', {
       dependencies: ['raycaster'],
       schema: {
         target: { type: 'selector' }
       },
       init() {
         this.el.addEventListener('click', () => {
-          this.el.setAttribute('animation', 'property: rotation; duration: 1500; easing: easeInSine; loop: false; to: 0 260 0');
+          this.el.setAttribute('animation', {
+            property: 'rotation',
+            duration: 1500,
+            easing: 'easeInSine',
+            loop: false,
+            to: '0 260 0'
+          });
           setTimeout(() => {
             onCatch && onCatch(this.el);
           }, 1500);
@@ -40,7 +46,7 @@ class Pokeball extends React.Component {
           <img id="pokeball" src={pokeball} alt="" />
         </a-assets>
 
-        <a-sphere hide-on-focus position="0 3 -5" radius="0.6" src="#pokeball" rotation="20 -80 5"></a-sphere>
+        <a-sphere on-focus position="0 3 -5" radius="0.6" src="#pokeball" rotation="20 -80 5"></a-sphere>
 
         <a-camera>
           <a-cursor></a-cursor>
