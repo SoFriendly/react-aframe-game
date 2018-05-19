@@ -3,10 +3,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import FullWrapper from './components/full-wrapper';
+import Preload from './components/preload';
 import Pokeball from './components/pokeball';
 import Pokemon from './components/pokemon';
 import Camera from './components/camera';
 import Detector from './components/detector';
+
+import resources from './common/resources';
 
 import './index.css';
 
@@ -14,7 +17,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: 'init', // ['init', 'detect', 'catch', 'battle']
+      status: 'preload', // ['preload', camera', 'detect', 'catch', 'battle']
       camera: null
     };
   }
@@ -22,6 +25,12 @@ class App extends React.Component {
   onCameraSuccess = (camera) => {
     this.setState({
       camera
+    });
+  }
+
+  onComplete = () => {
+    this.setState({
+      status: 'camera'
     });
   }
 
@@ -48,7 +57,12 @@ class App extends React.Component {
 
     return (
       <FullWrapper>
-        <Camera onSuccess={this.onCameraSuccess} onControl={this.onCameraControl} />
+        { status === 'preload' &&
+          <Preload resources={resources} onComplete={this.onComplete} />
+        }
+        { status === 'camera' &&
+          <Camera onSuccess={this.onCameraSuccess} onControl={this.onCameraControl} />
+        }
         { status === 'detect' &&
           <Detector camera={camera} onDetect={this.onDetect} />
         }
