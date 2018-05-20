@@ -1,0 +1,83 @@
+.pokemon-wrapper {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 500;
+}
+
+.battle-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 600;
+}
+
+.battle-item {
+  display: flex;
+  padding: .15rem;
+  flex: 1;
+  align-items: center;
+}
+
+.battle-item img {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.battle-item .battle-hp-wrapper {
+  position: relative;
+  flex: 1;
+  height: .2rem;
+  border: .04rem solid #ffffff;
+  border-radius: .1rem;
+  overflow: hidden;
+}
+
+.battle-item .battle-hp {
+  height: .2rem;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  background-color: red;
+  transition: all .3s ease;
+}
+
+.battle-item .battle-hp.battle-hp-l {
+  left: 0;
+}
+
+.battle-item .battle-hp.battle-hp-r {
+  right: 0;
+}
+
+.operation-wrapper {
+  width: 100%;
+  padding: .3rem .4rem;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 600;
+}
+
+.energy-btn {
+  font-size: .36rem;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #ff4200;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  height: .8rem;
+  background-image: linear-gradient(to right,#ff9000 0,#ff5000 100%);
+  border-radius: .4rem;
+}
+
+.energy-btn:active {
+  opacity: .8;
+}
