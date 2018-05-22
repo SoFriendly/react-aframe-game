@@ -12,6 +12,7 @@ import charizard from './images/charizard.png';
 import lightning from './images/lightning.jpg';
 import pika from './images/pika.png';
 import penhuo from './images/penhuo.png';
+import icon from './images/icon.png';
 
 import stadium from './models/stadium.ply';
 import seating from './models/seating.ply';
@@ -20,9 +21,16 @@ import pikachu from './models/pikachu.ply';
 import './index.css';
 
 export default class Pokemon extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      hpLeft: 100,
+      hpRight: 100
+    };
+  }
 
   componentDidMount() {
-    this.refs.battle.volume = 0.6;
+    // this.refs.battle.volume = 0.6;
   }
 
   onPressStart = () => {
@@ -34,9 +42,11 @@ export default class Pokemon extends React.Component {
   }
 
   render () {
+    const { hpLeft, hpRight } = this.state;
+
     return (
       <div className="pokemon-wrapper">
-        <a-scene>
+        {/* <a-scene>
           <a-assets>
             <a-asset-item id="stadium-ply" src={stadium}></a-asset-item>
             <a-asset-item id="seating-ply" src={seating}></a-asset-item>
@@ -79,24 +89,27 @@ export default class Pokemon extends React.Component {
             <a-cursor></a-cursor>
           </a-camera>
 
-        </a-scene>
+        </a-scene> */}
 
         <div className="battle-wrapper">
           <div className="battle-item">
             <img src={penhuo} alt="" />
             <div className="battle-hp-wrapper">
-              <div className="battle-hp battle-hp-l" style={{ width: '80%' }}></div>
+              <div className="battle-hp-bar battle-hp-l" style={{ width: hpLeft + '%' }}></div>
+              <div className="battle-hp-text">{hpRight}/100</div>
             </div>
           </div>
           <div className="battle-item">
             <div className="battle-hp-wrapper">
-              <div className="battle-hp battle-hp-r" style={{ width: '20%' }}></div>
+              <div className="battle-hp-bar battle-hp-r" style={{ width: hpRight + '%' }}></div>
+              <div className="battle-hp-text">{hpRight}/100</div>
             </div>
             <img src={pika} alt="" />
           </div>
         </div>
 
         <div className="operation-wrapper">
+          <img className="energy-icon" src={icon} alt="" />
           <div className="energy-bar"></div>
           <button className="energy-btn" onTouchStart={this.onPressStart} onTouchEnd={this.onPressEnd}>按下蓄力</button>
         </div>
