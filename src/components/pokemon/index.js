@@ -73,7 +73,20 @@ export default class Pokemon extends React.Component {
   }
 
   onPressEnd = () => {
+    let { energy, hpLeft, hpRight } = this.state;
     this.energyBarEnd();
+
+    const battle = Math.floor((1 - Math.abs(energy - 50) / 100) * 30);
+
+    hpLeft = Math.max(hpLeft - battle, 0);
+    hpRight = Math.max(hpRight - 20, 0);
+
+    if (hpLeft >= 0 && hpRight >= 0) {
+      this.setState({
+        hpLeft,
+        hpRight
+      });
+    }
   }
 
   render () {
@@ -131,7 +144,7 @@ export default class Pokemon extends React.Component {
             <img src={penhuo} alt="" />
             <div className="battle-hp-wrapper">
               <div className="battle-hp-bar battle-hp-l" style={{ width: hpLeft + '%' }}></div>
-              <div className="battle-hp-text">{hpRight}/100</div>
+              <div className="battle-hp-text">{hpLeft}/100</div>
             </div>
           </div>
           <div className="battle-item">
