@@ -25,24 +25,59 @@ export default class Pokemon extends React.Component {
     super(props);
     this.state = {
       hpLeft: 100,
-      hpRight: 100
+      hpRight: 100,
+      energy: 0
     };
+
+    this.timer = null;
   }
 
   componentDidMount() {
     // this.refs.battle.volume = 0.6;
   }
 
+  energyBarEnd() {
+    clearInterval(this.timer);
+    this.timer = null;
+  }
+
+  energyBarBegin() {
+    var trun = false; 
+
+    this.timer = setInterval(() => {
+      let { energy } = this.state;
+
+      if (energy === 100) {
+        trun = true;
+      }
+      if (energy === 0) {
+        trun = false;
+      }
+
+      if (trun) {
+        energy -= 4;
+        this.setState({
+          energy
+        });
+      } else {
+        energy += 4;
+        this.setState({
+          energy
+        });
+      }
+    }, 100);
+  }
+
   onPressStart = () => {
-    console.log('start');
+    this.energyBarBegin();
   }
 
   onPressEnd = () => {
-    console.log('end');
+    this.energyBarEnd();
   }
 
   render () {
-    const { hpLeft, hpRight } = this.state;
+    const { hpLeft, hpRight, energy } = this.state;
 
     return (
       <div className="pokemon-wrapper">
@@ -110,7 +145,9 @@ export default class Pokemon extends React.Component {
 
         <div className="operation-wrapper">
           <img className="energy-icon" src={icon} alt="" />
-          <div className="energy-bar"></div>
+          <div className="energy-bar">
+            <div className="energy-inner-bar" style={{ left: energy + '%' }}></div>
+          </div>
           <button className="energy-btn" onTouchStart={this.onPressStart} onTouchEnd={this.onPressEnd}>按下蓄力</button>
         </div>
       </div>
