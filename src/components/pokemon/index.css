@@ -11,12 +11,15 @@
 
 .battle-wrapper {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
   position: absolute;
   left: 0;
   top: 0;
   z-index: 600;
+}
+
+.battle-info {
+  display: flex;
+  justify-content: space-between;
 }
 
 .battle-item {
@@ -133,4 +136,70 @@
 
 .energy-btn:active {
   opacity: .8;
+}
+
+.result-wrapper {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  transition: all .3s ease;
+}
+
+.result-wrapper.show {
+  display: block;
+}
+
+.result-inner {
+  opacity: 0;
+  width: 80%;
+  min-height: 3rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -60%);
+  padding: .25rem .4rem;
+  background-color: #ffffff;
+  border-radius: .2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .7);
+  transition: all .3s ease;
+  overflow: hidden;
+}
+
+.result-wrapper.show .result-inner {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}
+
+.result-logo {
+  display: block;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.result-title {
+  font-size: .7rem;
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
+  color: #111;
+}
+
+.result-btn {
+  display: block;
+  font-size: .36rem;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #ff4200;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  height: .9rem;
+  background-image: linear-gradient(to right,#ff9000 0,#ff5000 100%);
+  border-radius: .45rem;
+  box-shadow: 0 2px 4px #f7c7b1;
 }

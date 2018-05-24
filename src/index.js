@@ -52,6 +52,12 @@ class App extends React.Component {
     });
   }
 
+  onConfirm = () => {
+    this.setState({
+      status: 'camera'
+    });
+  }
+
   render () {
     const { status, camera } = this.state;
 
@@ -70,7 +76,7 @@ class App extends React.Component {
           <Pokeball onCatch={this.onBallCatch} />
         }
         { status === 'battle' &&
-          <Pokemon />
+          <Pokemon onConfirm={this.onConfirm} />
         }
       </FullWrapper>
     );
