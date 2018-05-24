@@ -17,7 +17,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: 'battle', // ['preload', camera', 'detect', 'catch', 'battle']
+      status: 'preload', // ['preload', camera', 'detect', 'catch', 'battle']
       camera: null
     };
   }
@@ -66,7 +66,7 @@ class App extends React.Component {
         { status === 'preload' &&
           <Preload resources={resources} onComplete={this.onComplete} />
         }
-        { status === 'camera' &&
+        { (status === 'camera' || status === 'detect') &&
           <Camera onSuccess={this.onCameraSuccess} onControl={this.onCameraControl} />
         }
         { status === 'detect' &&

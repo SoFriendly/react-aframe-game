@@ -158,6 +158,9 @@
   opacity: 0;
   width: 80%;
   min-height: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   position: absolute;
   left: 50%;
   top: 50%;
