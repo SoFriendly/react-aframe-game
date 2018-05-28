@@ -6,11 +6,15 @@ CV.Image = function (width, height, data) {
   this.data = data || [];
 };
 
+
+// 转换为灰度图
 CV.grayscale = function (imageSrc, imageDst) {
   var src = imageSrc.data, dst = imageDst.data, len = src.length,
     i = 0, j = 0;
 
+  // 加权平均值算法
   for (; i < len; i += 4) {
+    // 红色30% 绿色 59% 蓝色11%
     dst[j++] = (src[i] * 0.299 + src[i + 1] * 0.587 + src[i + 2] * 0.114 + 0.5) & 0xff;
   }
 
@@ -20,6 +24,7 @@ CV.grayscale = function (imageSrc, imageDst) {
   return imageDst;
 };
 
+// 执行二值化阈值操作： 将图像的每个像素变成黑色或白色
 CV.threshold = function (imageSrc, imageDst, threshold) {
   var src = imageSrc.data, dst = imageDst.data,
     len = src.length, tab = [], i;
@@ -57,7 +62,8 @@ CV.adaptiveThreshold = function (imageSrc, imageDst, kernelSize, threshold) {
   return imageDst;
 };
 
-CV.otsu = function (imageSrc) {
+// ostu算法 g = w0*w1*(u0-u1)*(u0-u1)
+CV.ostu = function (imageSrc) {
   var src = imageSrc.data, len = src.length, hist = [],
     threshold = 0, sum = 0, sumB = 0, wB = 0, wF = 0, max = 0,
     mu, between, i;
@@ -277,6 +283,7 @@ CV.gaussianKernel = function (kernelSize) {
   return kernel;
 };
 
+// 使用findContours检测输入图像的轮廓
 CV.findContours = function (imageSrc, binary) {
   var width = imageSrc.width, height = imageSrc.height, contours = [],
     src, deltas, pos, pix, nbd, outer, hole, i, j;
@@ -482,6 +489,8 @@ CV.approxPolyDP = function (contour, epsilon) {
   return poly;
 };
 
+
+// 透视投影
 CV.warp = function (imageSrc, imageDst, contour, warpSize) {
   var src = imageSrc.data, dst = imageDst.data,
     width = imageSrc.width, height = imageSrc.height,
@@ -625,6 +634,7 @@ CV.isContourConvex = function (contour) {
   return convex;
 };
 
+// 求多边形周长
 CV.perimeter = function (poly) {
   var len = poly.length, i = 0, j = len - 1,
     p = 0.0, dx, dy;

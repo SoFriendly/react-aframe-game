@@ -117,7 +117,7 @@ AR.Detector.prototype.findMarkers = function (imageSrc, candidates, warpSize) {
 
     CV.warp(imageSrc, this.homography, candidate, warpSize);
 
-    CV.threshold(this.homography, this.homography, CV.otsu(this.homography));
+    CV.threshold(this.homography, this.homography, CV.ostu(this.homography));
 
     marker = this.getMarker(this.homography, candidate);
     if (marker) {
