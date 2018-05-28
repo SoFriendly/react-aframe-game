@@ -35,7 +35,7 @@ class Pokemon extends React.Component {
   }
 
   componentDidMount() {
-    // this.refs.battle.volume = 0.6;
+    this.refs.battle.volume = 0.6;
   }
 
   energyBarEnd() {
@@ -108,7 +108,7 @@ class Pokemon extends React.Component {
             <audio ref="battle" autoPlay loop src={battle}></audio>
           </a-assets>
 
-          <a-sky color="#111"></a-sky>
+          {/* <a-sky color="#111"></a-sky> */}
 
           <a-entity ply-model="src: #stadium-ply"
                     position="0 -11 -27" scale=".8 .8 .8" rotation="-90 0 0"></a-entity>

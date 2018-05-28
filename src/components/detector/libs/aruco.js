@@ -180,9 +180,15 @@ AR.Detector.prototype.getMarker = function (imageSrc, candidate) {
   );
 };
 
+// 海明距离计算 对每个可能的标记方向找到海明距离，和参考标识一致的为0,其他旋转形式的标记不为0,因为经过透射变换后，只能得到四个方向的标记，则旋转四次，找到和参考标识一致的方向
 AR.Detector.prototype.hammingDistance = function (bits) {
-  var ids = [[1, 0, 0, 0, 0], [1, 0, 1, 1, 1], [0, 1, 0, 0, 1], [0, 1, 1, 1, 0]],
-    dist = 0, sum, minSum, i, j, k;
+  var ids = [
+    [1, 0, 0, 0, 0],
+    [1, 0, 1, 1, 1],
+    [0, 1, 0, 0, 1],
+    [0, 1, 1, 1, 0]
+  ],
+  dist = 0, sum, minSum, i, j, k;
 
   for (i = 0; i < 5; ++i) {
     minSum = Infinity;
