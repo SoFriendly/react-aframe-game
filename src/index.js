@@ -66,7 +66,7 @@ class App extends React.Component {
         { status === 'preload' &&
           <Preload resources={resources} onComplete={this.onComplete} />
         }
-        { (status === 'camera' || status === 'detect') &&
+        { status !== 'preload' &&
           <Camera onSuccess={this.onCameraSuccess} onControl={this.onCameraControl} />
         }
         { status === 'detect' &&
