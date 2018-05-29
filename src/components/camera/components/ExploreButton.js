@@ -3,12 +3,16 @@ import PropTypes from 'prop-types';
 
 import '../index.css';
 
-const ExploreButton = ({ onClick }) => (
-  <button className="camera-explore-btn" onClick={onClick} />
+const ExploreButton = ({ onControl, onHelp }) => (
+  <div className="camera-explore-wrapper">
+    <button className="camera-main-btn" onClick={onControl} />
+    <button className="camera-help-btn" onClick={onHelp} />
+  </div>
 );
 
 ExploreButton.propTypes = {
-  onClick: PropTypes.func,
+  onControl: PropTypes.func,
+  onHelp: PropTypes.func
 };
 
 export default ExploreButton;

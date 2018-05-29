@@ -13,7 +13,11 @@
   bottom: .6rem;
 }
 
-.camera-explore-btn {
+.camera-explore-wrapper {
+  position: relative;
+}
+
+.camera-main-btn {
   width: 1.4rem;
   height: 1.4rem;
   border: none;
@@ -22,6 +26,20 @@
   background: url('./images/pokeball.png') no-repeat;
   background-size: cover;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.camera-help-btn {
+  position: absolute;
+  top: .4rem;
+  right: -1.2rem;
+  width: .6rem;
+  height: .6rem;
+  border: none;
+  border-radius: 50%;
+  background-color: #ff4200;
+  background: url('./images/help.png') no-repeat;
+  background-size: cover;
+  box-shadow: 0 1px 3px #f7c7b1;
 }
 
 .camera-switch-btn {

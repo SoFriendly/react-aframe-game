@@ -8,6 +8,7 @@ import Pokeball from './components/pokeball';
 import Pokemon from './components/pokemon';
 import Camera from './components/camera';
 import Detector from './components/detector';
+import Help from './components/help';
 
 import resources from './common/resources';
 
@@ -17,9 +18,15 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: 'preload', // ['preload', camera', 'detect', 'catch', 'battle']
+      status: 'preload', // ['preload', camera', 'help', 'detect', 'catch', 'battle']
       camera: null
     };
+  }
+
+  onComplete = () => {
+    this.setState({
+      status: 'camera'
+    });
   }
 
   onCameraSuccess = (camera) => {
@@ -28,7 +35,13 @@ class App extends React.Component {
     });
   }
 
-  onComplete = () => {
+  onCameraHelp = () => {
+    this.setState({
+      status: 'help'
+    });
+  }
+
+  onHelpClose = () => {
     this.setState({
       status: 'camera'
     });
@@ -63,11 +76,14 @@ class App extends React.Component {
 
     return (
       <FullWrapper>
+        { status === 'help' &&
+          <Help onClose={this.onHelpClose} />
+        }
         { status === 'preload' &&
           <Preload resources={resources} onComplete={this.onComplete} />
         }
         { status !== 'preload' &&
-          <Camera onSuccess={this.onCameraSuccess} onControl={this.onCameraControl} />
+          <Camera onSuccess={this.onCameraSuccess} onHelp={this.onCameraHelp} onControl={this.onCameraControl} />
         }
         { status === 'detect' &&
           <Detector camera={camera} onDetect={this.onDetect} />

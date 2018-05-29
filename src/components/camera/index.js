@@ -137,7 +137,7 @@ class Camera extends PureComponent {
   }
 
   render() {
-    const { homeButtonRenderer, onControl } = this.props;
+    const { homeButtonRenderer, onControl, onHelp } = this.props;
     const { constraints = {}, devices, error } = this.state;
     const multipleDevices = devices && devices.length > 1;
     const { video: { facingMode } } = constraints;
@@ -156,7 +156,7 @@ class Camera extends PureComponent {
             {homeButtonRenderer ? (
               homeButtonRenderer(this.captureMediaStream)
             ) : (
-              <ExploreButton onClick={onControl} />
+              <ExploreButton onControl={onControl} onHelp={onHelp} />
             )}
           </CameraControl>
           {multipleDevices && (
@@ -180,6 +180,7 @@ Camera.propTypes = {
   facingMode: PropTypes.string,
   onStopMediaStream: PropTypes.func,
   onControl: PropTypes.func,
+  onHelp: PropTypes.func,
   onSuccess: PropTypes.func
 };
 
