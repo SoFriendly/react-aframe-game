@@ -24,7 +24,7 @@ CV.grayscale = function (imageSrc, imageDst) {
   return imageDst;
 };
 
-// 执行二值化阈值操作： 将图像的每个像素变成黑色或白色
+// 执行直接阈值化操作： 将图像的每个像素变成黑色或白色
 CV.threshold = function (imageSrc, imageDst, threshold) {
   var src = imageSrc.data, dst = imageDst.data,
     len = src.length, tab = [], i;
@@ -43,6 +43,7 @@ CV.threshold = function (imageSrc, imageDst, threshold) {
   return imageDst;
 };
 
+// 自适应阈值化操作：根据图像不同区域亮度分布的，改变阈值
 CV.adaptiveThreshold = function (imageSrc, imageDst, kernelSize, threshold) {
   var src = imageSrc.data, dst = imageDst.data, len = src.length, tab = [], i;
 
@@ -114,6 +115,7 @@ CV.BlurStack = function () {
   this.next = null;
 };
 
+// 图像方框滤波模糊
 CV.stackBoxBlur = function (imageSrc, imageDst, kernelSize) {
   var src = imageSrc.data, dst = imageDst.data,
     height = imageSrc.height, width = imageSrc.width,
@@ -283,7 +285,7 @@ CV.gaussianKernel = function (kernelSize) {
   return kernel;
 };
 
-// 使用findContours检测输入图像的轮廓
+// 使用findContours检测图像的轮廓
 CV.findContours = function (imageSrc, binary) {
   var width = imageSrc.width, height = imageSrc.height, contours = [],
     src, deltas, pos, pix, nbd, outer, hole, i, j;

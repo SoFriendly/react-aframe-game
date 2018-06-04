@@ -30,6 +30,7 @@ AR.Detector.prototype.detect = function (image) {
   return this.findMarkers(this.grey, this.candidates, 49);
 };
 
+// 寻找候选四边形
 AR.Detector.prototype.findCandidates = function (contours, minSize, epsilon, minLength) {
   var candidates = [], len = contours.length, contour, poly, i;
 

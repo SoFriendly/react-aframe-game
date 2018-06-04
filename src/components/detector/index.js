@@ -3,7 +3,7 @@ import './libs/polyfill';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Loading from '../loading';
+import Loading from '../../widgets/loading';
 import AR from './libs/aruco';
 
 import './index.css';

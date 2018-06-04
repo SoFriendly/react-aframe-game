@@ -2,8 +2,9 @@ import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import FullWrapper from './widgets/full-wrapper';
+
 import ARMarker from './components/ar-marker';
-import FullWrapper from './components/full-wrapper';
 import Preload from './components/preload';
 import Pokeball from './components/pokeball';
 import Pokemon from './components/pokemon';
@@ -22,7 +23,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: 'catch', // ['preload', camera', 'help', 'detect', 'catch', 'battle']
+      status: 'preload', // ['preload', camera', 'help', 'detect', 'catch', 'battle']
       camera: null
     };
   }
