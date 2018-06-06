@@ -257,6 +257,7 @@ CV.gaussianBlurFilter = function (imageSrc, imageDst, kernel, horizontal) {
   return imageDst;
 };
 
+// 高斯核函数 空间中任一点x到某一中心之间欧氏距离的单调函数 
 CV.gaussianKernel = function (kernelSize) {
   var tab =
     [[1],
@@ -395,6 +396,7 @@ CV.neighborhoodDeltas = function (width) {
   return deltas.concat(deltas);
 };
 
+// 对图像轮廓点进行多边形拟合
 CV.approxPolyDP = function (contour, epsilon) {
   var slice = { start_index: 0, end_index: 0 },
     right_slice = { start_index: 0, end_index: 0 },
@@ -549,6 +551,7 @@ CV.warp = function (imageSrc, imageDst, contour, warpSize) {
   return imageDst;
 };
 
+// 获得图像透视变换的矩阵
 CV.getPerspectiveTransform = function (src, size) {
   var rq = CV.square2quad(src);
 
@@ -600,6 +603,7 @@ CV.square2quad = function (src) {
   return sq;
 };
 
+// 判定一个轮廓是否是凸包
 CV.isContourConvex = function (contour) {
   var orientation = 0, convex = true,
     len = contour.length, i = 0, j = 0,
@@ -669,6 +673,7 @@ CV.minEdgeLength = function (poly) {
   return Math.sqrt(min);
 };
 
+// 对二值化图像进行统计得到非零像素点数
 CV.countNonZero = function (imageSrc, square) {
   var src = imageSrc.data, height = square.height, width = square.width,
     pos = square.x + (square.y * imageSrc.width),
