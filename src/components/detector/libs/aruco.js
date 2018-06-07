@@ -56,6 +56,7 @@ AR.Detector.prototype.findCandidates = function (contours, minSize, epsilon, min
   return candidates;
 };
 
+// 对点进行顺时针排序
 AR.Detector.prototype.clockwiseCorners = function (candidates) {
   var len = candidates.length, dx1, dx2, dy1, dy2, swap, i;
 
@@ -87,11 +88,12 @@ AR.Detector.prototype.notTooNear = function (candidates, minDist) {
         dx = candidates[i][k].x - candidates[j][k].x;
         dy = candidates[i][k].y - candidates[j][k].y;
 
-        dist += dx * dx + dy * dy;
+        dist += dx * dx + dy * dy; // 对应点的距离
       }
 
+      // 计算两个四边之间对应点距离的平均值
       if ((dist / 4) < (minDist * minDist)) {
-
+        // 排除边长更小的四边形
         if (CV.perimeter(candidates[i]) < CV.perimeter(candidates[j])) {
           candidates[i].tooNear = true;
         } else {
