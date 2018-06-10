@@ -24,7 +24,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       status: 'preload', // ['preload', camera', 'help', 'detect', 'catch', 'battle']
-      camera: null
+      camera: null,
+      hasHomeRender: true
     };
   }
 
@@ -54,7 +55,8 @@ class App extends React.Component {
 
   onCameraControl = () => {
     this.setState({
-      status: 'detect'
+      status: 'detect',
+      hasHomeRender: false
     });
   }
 
@@ -72,12 +74,13 @@ class App extends React.Component {
 
   onConfirm = () => {
     this.setState({
-      status: 'camera'
+      status: 'camera',
+      hasHomeRender: true
     });
   }
 
   render () {
-    const { status, camera } = this.state;
+    const { status, camera, hasHomeRender } = this.state;
     
     if (params.marker === 'true') {
       return <ARMarker />
@@ -91,7 +94,7 @@ class App extends React.Component {
             <Preload resources={resources} onComplete={this.onComplete} />
           }
           { status !== 'preload' &&
-            <Camera onSuccess={this.onCameraSuccess} onHelp={this.onCameraHelp} onControl={this.onCameraControl} />
+            <Camera hasHomeRender={hasHomeRender} onSuccess={this.onCameraSuccess} onHelp={this.onCameraHelp} onControl={this.onCameraControl} />
           }
           { status === 'detect' &&
             <Detector camera={camera} onDetect={this.onDetect} />

@@ -137,7 +137,7 @@ class Camera extends PureComponent {
   }
 
   render() {
-    const { homeButtonRenderer, onControl, onHelp } = this.props;
+    const { hasHomeRender, onControl, onHelp } = this.props;
     const { constraints = {}, devices, error } = this.state;
     const multipleDevices = devices && devices.length > 1;
     const { video: { facingMode } } = constraints;
@@ -153,9 +153,7 @@ class Camera extends PureComponent {
             ref={video => (this.video = video)}
           />
           <CameraControl>
-            {homeButtonRenderer ? (
-              homeButtonRenderer(this.captureMediaStream)
-            ) : (
+            {!hasHomeRender ? null: (
               <ExploreButton onControl={onControl} onHelp={onHelp} />
             )}
           </CameraControl>
@@ -176,7 +174,7 @@ Camera.defaultProps = {
 };
 
 Camera.propTypes = {
-  homeButtonRenderer: PropTypes.func,
+  hasHomeRender: PropTypes.bool,
   facingMode: PropTypes.string,
   onStopMediaStream: PropTypes.func,
   onControl: PropTypes.func,
