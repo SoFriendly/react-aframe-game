@@ -66,6 +66,13 @@ class App extends React.Component {
     });
   }
 
+  onDetectBack = () => {
+    this.setState({
+      status: 'camera',
+      hasHomeRender: true
+    });
+  }
+
   onBallCatch = () => {
     this.setState({
       status: 'battle'
@@ -97,7 +104,7 @@ class App extends React.Component {
             <Camera hasHomeRender={hasHomeRender} onSuccess={this.onCameraSuccess} onHelp={this.onCameraHelp} onControl={this.onCameraControl} />
           }
           { status === 'detect' &&
-            <Detector camera={camera} onDetect={this.onDetect} />
+            <Detector camera={camera} onDetect={this.onDetect} onBack={this.onDetectBack} />
           }
           { status === 'catch' &&
             <Pokeball onCatch={this.onBallCatch} />

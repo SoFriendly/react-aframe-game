@@ -6,6 +6,19 @@
   left: 0;
 }
 
+.detector-back {
+  position: absolute;
+  top: 1rem;
+  left: .4rem;
+  z-index: 9999;
+}
+
+.detector-back-icon {
+  display: block;
+  width: .5rem;
+  height: .5rem;
+}
+
 .detector-sight {
   position: absolute;
   width: 100%;

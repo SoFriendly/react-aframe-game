@@ -673,7 +673,7 @@ CV.minEdgeLength = function (poly) {
   return Math.sqrt(min);
 };
 
-// 对二值化图像进行统计得到非零像素点数
+// 对二值化图像进行统计得到非零像素点数，并且忽略单元格周围像素的干扰
 CV.countNonZero = function (imageSrc, square) {
   var src = imageSrc.data, height = square.height, width = square.width,
     pos = square.x + (square.y * imageSrc.width),

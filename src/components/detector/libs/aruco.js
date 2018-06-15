@@ -44,7 +44,7 @@ AR.Detector.prototype.findCandidates = function (contours, minSize, epsilon, min
 
       this.polys.push(poly);
 
-      if ((4 === poly.length) && (CV.isContourConvex(poly))) {
+      if ((poly.length === 4) && CV.isContourConvex(poly)) {
 
         if (CV.minEdgeLength(poly) >= minLength) {
           candidates.push(poly);
@@ -137,6 +137,7 @@ AR.Detector.prototype.getMarker = function (imageSrc, candidate) {
     bits = [], rotations = [], distances = [],
     square, pair, inc, i, j;
 
+  // 验证周围黑色轮廓变
   for (i = 0; i < 7; ++i) {
     inc = (0 === i || 6 === i) ? 1 : 6;
 
@@ -148,6 +149,7 @@ AR.Detector.prototype.getMarker = function (imageSrc, candidate) {
     }
   }
 
+  // 识别内边5x5编码区域
   for (i = 0; i < 5; ++i) {
     bits[i] = [];
 

@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import Loading from '../../widgets/loading';
 import AR from './libs/aruco';
 
+import back from './images/back.png';
+
 import './index.css';
 
 class Detector extends React.Component {
@@ -42,7 +44,7 @@ class Detector extends React.Component {
     if (markers.length > 0) {
       this.validatePosition(markers, () => {
         this.drawCorners(markers);
-        Loading.show('识别中', 3000, () => {
+        Loading.show('识别中', 2000, () => {
           onDetect && onDetect();
         });
       });
@@ -125,6 +127,12 @@ class Detector extends React.Component {
     }
   }
 
+  onBack = () => {
+    console.log(1);
+    const { onBack } = this.props;
+    onBack && onBack();
+  }
+
   render() {
     return (
       <div className="detector-wrapper">
@@ -133,6 +141,9 @@ class Detector extends React.Component {
           height={this.height}
           ref={canvas => (this.canvas = canvas)}
         ></canvas>
+        <div className="detector-back" onClick={this.onBack}>
+          <img className="detector-back-icon" src={back} alt="" />
+        </div>
         <div className="detector-sight">
           <div className="detector-sight-notice">请对准目标扫描3秒</div>
           <div className="detector-sight-body" ref={sight => (this.sight = sight)}>
@@ -150,7 +161,8 @@ class Detector extends React.Component {
 
 
 Detector.propTypes = {
-  onDetect: PropTypes.func
+  onDetect: PropTypes.func,
+  onBack: PropTypes.func
 };
 
 export default Detector;
