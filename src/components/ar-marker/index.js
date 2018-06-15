@@ -1,5 +1,5 @@
 import React from 'react';
-import ArucoMarker from 'aruco-marker';
+import ArucoMarker from './libs/aruco-marker';
 
 import './index.css';
 
