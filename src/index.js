@@ -23,7 +23,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: 'battle', // ['preload', camera', 'help', 'detect', 'catch', 'battle']
+      status: 'preload', // ['preload', camera', 'help', 'detect', 'catch', 'battle']
       camera: null,
       hasHomeRender: true
     };
